@@ -16,3 +16,15 @@ export const handleToken = token => {
       .then(res => dispatch({ type: FETCH_USER, payload: res.data }));
   };
 };
+
+export const submitSurvey = (values, history) => {
+  // const res = await axios.post('/api/surveys', values);
+  //
+  // dispatch({type: FETCH_USER, payload: res.data})
+  return function(dispatch) {
+    axios.post("/api/surveys", values).then(res => {
+      history.push("/surveys");
+      dispatch({ type: FETCH_USER, payload: res.data });
+    });
+  };
+};
